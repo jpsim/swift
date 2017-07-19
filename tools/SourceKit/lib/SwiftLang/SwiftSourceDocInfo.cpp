@@ -869,6 +869,11 @@ static bool passCursorInfoForDecl(const ValueDecl *VD,
   Info.Name = Name;
   Info.USR = USR;
   Info.TypeName = TypeName;
+  const auto &SM = Ctx.SourceMgr;
+  if (VD->getStartLoc().isValid())
+    Info.BodyStartLine = SM.getLineNumber(VD->getStartLoc());
+  if (VD->getEndLoc().isValid())
+    Info.BodyEndLine = SM.getLineNumber(VD->getEndLoc());
   Info.TypeUSR = TypeUsr;
   Info.ContainerTypeUSR = ContainerTypeUsr;
   Info.DocComment = DocComment;

@@ -254,6 +254,8 @@ struct CursorInfo {
   StringRef Name;
   StringRef USR;
   StringRef TypeName;
+  llvm::Optional<unsigned> BodyStartLine;
+  llvm::Optional<unsigned> BodyEndLine;
   StringRef TypeUSR;
   StringRef ContainerTypeUSR;
   StringRef DocComment;
