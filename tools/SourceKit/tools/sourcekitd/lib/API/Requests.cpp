@@ -1365,8 +1365,8 @@ static void reportCursorInfo(const CursorInfo &Info, ResponseReceiver Rec) {
     Elem.set(KeyTypeName, Info.TypeName);
   if (!Info.DocComment.empty())
     Elem.set(KeyDocFullAsXML, Info.DocComment);
-  if (!Info.AnnotatedDeclaration.empty())
-    Elem.set(KeyAnnotatedDecl, Info.AnnotatedDeclaration);
+  if (!Info.ParsedDeclaration.empty())
+    Elem.set(KeyParsedDeclaration, Info.ParsedDeclaration);
   if (!Info.FullyAnnotatedDeclaration.empty())
     Elem.set(KeyFullyAnnotatedDecl, Info.FullyAnnotatedDeclaration);
   if (!Info.ModuleName.empty())
@@ -1411,7 +1411,7 @@ static void reportCursorInfo(const CursorInfo &Info, ResponseReceiver Rec) {
     auto RelDecls = Elem.setArray(KeyRelatedDecls);
     for (auto AnnotDecl : Info.AnnotatedRelatedDeclarations) {
       auto RelDecl = RelDecls.appendDictionary();
-      RelDecl.set(KeyAnnotatedDecl, AnnotDecl);
+      RelDecl.set(KeyParsedDeclaration, AnnotDecl);
     }
   }
   if (Info.IsSystem)

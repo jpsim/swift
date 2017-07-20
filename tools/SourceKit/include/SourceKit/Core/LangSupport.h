@@ -265,7 +265,7 @@ struct CursorInfo {
   /// comment for the declaration.
   StringRef LocalizationKey;
   /// Annotated XML pretty printed declaration.
-  StringRef AnnotatedDeclaration;
+  StringRef ParsedDeclaration;
   /// Fully annotated XML pretty printed declaration.
   /// FIXME: this should eventually replace \c AnnotatedDeclaration.
   StringRef FullyAnnotatedDeclaration;

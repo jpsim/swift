@@ -410,10 +410,7 @@ static void printAnnotatedDeclaration(const ValueDecl *VD,
   while (VD->isImplicit() && VD->getOverriddenDecl())
     VD = VD->getOverriddenDecl();
 
-  // Wrap this up in XML, as that's what we'll use for documentation comments.
-  OS<<"<Declaration>";
   VD->print(Printer, PO);
-  OS<<"</Declaration>";
 }
 
 void SwiftLangSupport::printFullyAnnotatedDeclaration(const ValueDecl *VD,
@@ -838,7 +835,7 @@ static bool passCursorInfoForDecl(const ValueDecl *VD,
                             MangledContainerTypeEnd - MangledContainerTypeStart);
   StringRef DocComment = StringRef(SS.begin()+DocCommentBegin,
                                    DocCommentEnd-DocCommentBegin);
-  StringRef AnnotatedDecl = StringRef(SS.begin()+DeclBegin,
+  StringRef ParsedDeclaration = StringRef(SS.begin()+DeclBegin,
                                       DeclEnd-DeclBegin);
   StringRef FullyAnnotatedDecl =
       StringRef(SS.begin() + FullDeclBegin, FullDeclEnd - FullDeclBegin);
@@ -880,7 +877,7 @@ static bool passCursorInfoForDecl(const ValueDecl *VD,
   Info.TypeUSR = TypeUsr;
   Info.ContainerTypeUSR = ContainerTypeUsr;
   Info.DocComment = DocComment;
-  Info.AnnotatedDeclaration = AnnotatedDecl;
+  Info.ParsedDeclaration = ParsedDeclaration;
   Info.FullyAnnotatedDeclaration = FullyAnnotatedDecl;
   Info.ModuleName = ModuleName;
   Info.ModuleInterfaceName = ModuleInterfaceName;

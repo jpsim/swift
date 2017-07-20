@@ -1045,7 +1045,7 @@ static void printCursorInfo(sourcekitd_variant_t Info, StringRef FilenameIn,
       sourcekitd_variant_dictionary_get_string(Info, KeyTypeInterface);
   bool IsSystem = sourcekitd_variant_dictionary_get_bool(Info, KeyIsSystem);
   const char *AnnotDecl = sourcekitd_variant_dictionary_get_string(Info,
-                                                              KeyAnnotatedDecl);
+                                                              KeyParsedDeclaration);
   const char *FullAnnotDecl =
       sourcekitd_variant_dictionary_get_string(Info, KeyFullyAnnotatedDecl);
   const char *DocFullAsXML =
@@ -1088,7 +1088,7 @@ static void printCursorInfo(sourcekitd_variant_t Info, StringRef FilenameIn,
     sourcekitd_variant_t Entry =
     sourcekitd_variant_array_get_value(RelatedDeclsObj, i);
     RelatedDecls.push_back(sourcekitd_variant_dictionary_get_string(Entry,
-                                                             KeyAnnotatedDecl));
+                                                             KeyParsedDeclaration));
   }
 
   std::vector<const char *> AvailableActions;
