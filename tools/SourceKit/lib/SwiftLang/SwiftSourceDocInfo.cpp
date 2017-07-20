@@ -394,8 +394,11 @@ static Type findBaseTypeForReplacingArchetype(const ValueDecl *VD, const Type Ty
 static void printAnnotatedDeclaration(const ValueDecl *VD,
                                       const Type BaseTy,
                                       raw_ostream &OS) {
-  AnnotatedDeclarationPrinter Printer(OS);
-  PrintOptions PO = PrintOptions::printQuickHelpDeclaration();
+  StreamPrinter Printer(OS);
+  PrintOptions PO;
+  PO.ExplodeEnumCaseDecls = true;
+  PO.PrintOriginalSourceText = true;
+  PO.SkipPrivateStdlibDecls = true;
   if (BaseTy) {
     PO.setBaseType(BaseTy);
     PO.PrintAsMember = true;

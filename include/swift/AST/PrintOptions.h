@@ -490,6 +490,13 @@ struct PrintOptions {
     PO.ShouldQualifyNestedDeclarations = QualifyNestedDeclarations::TypesOnly;
     return PO;
   }
+
+  /// Print the original source text.
+  static PrintOptions printOriginalSourceText() {
+    PrintOptions PO;
+    PO.PrintOriginalSourceText = true;
+    return PO;
+  }
 };
 }
 
